@@ -7,12 +7,16 @@ const getLogin =(req,res)=>{
 const postLogin = async(req,res)=>{
 
     const {email,password} =req.body;
-    const user = await UsersModels.findOne(req.body);
-    //console.log(user);
     let error = null;
+
+    //find all
+    //const user = await UsersModels.findOne(req.body);
+
+    const user = await UsersModels.find({email,password});
+    //console.log(user);
     if(email==""||password==""){
         error='Email or password not empty';
-    }else if(email==user.email && password==user.password){
+    }else if(user.length>0){
         res.redirect('/admin/dashboard')
     }else{
         error = 'Tài khoản k hơp lệ';
