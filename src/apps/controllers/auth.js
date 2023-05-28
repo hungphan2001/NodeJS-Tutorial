@@ -4,6 +4,12 @@ const getLogin =(req,res)=>{
     res.render('admin/login',{data:{}});
 }
 
+const logout =(req,res)=>{
+    req.session.destroy();
+    res.redirect('/admin/login');
+}
+
+
 const postLogin = async(req,res)=>{
 
     const {email,password} =req.body;
@@ -17,6 +23,8 @@ const postLogin = async(req,res)=>{
     if(email==""||password==""){
         error='Email or password not empty';
     }else if(user.length>0){
+        req.session.email = email;
+        req.session.password = password;
         res.redirect('/admin/dashboard')
     }else{
         error = 'Tài khoản k hơp lệ';
@@ -25,7 +33,9 @@ const postLogin = async(req,res)=>{
 
 }
 
+
 module.exports= {
     getLogin,
     postLogin,
+    logout
 }

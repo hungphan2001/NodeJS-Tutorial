@@ -5,5 +5,7 @@ module.exports = {
         router:`${__dirname}/../src/routes/web`,
         view_folder: `${__dirname}/../src/apps/views`,
         view_engine:'ejs',
+        session_key:"fgfgfhhgert",
+        tmp:`${__dirname}/../src/tmp`
     }
 }

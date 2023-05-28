@@ -25,7 +25,11 @@ const productsSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
-    warrantly:{
+    promotion:{
+        type:String,
+        default:null,
+    },
+    warranty:{
         type:String,
         default:null,
     },
@@ -34,7 +38,7 @@ const productsSchema = new mongoose.Schema({
         default:null,
     },
     is_stock:{
-        type:String,
+        type:Boolean,
         default:true,
     },
     name:{
