@@ -10,6 +10,7 @@ const CategoryController = require('../apps/controllers/category');
 const ProductController = require('../apps/controllers/product');
 const UsersController = require('../apps/controllers/users');
 
+const SiteController = require('../apps/controllers/site');
 //Upload
 
 const UploadMiddleware = require("../middlewares/upload");
@@ -26,6 +27,14 @@ router.get("/test2",TestController.test2);
   router.get('/admin/logout',AuthMiddlewares.checkAdmin,AuthController.logout);
   router.get ('/admin/dashboard',AuthMiddlewares.checkAdmin,AdminController.index);
   
+
+  // Router Site
+router.get("/", SiteController.home);
+router.get("/category", SiteController.category);
+router.get("/product", SiteController.product);
+router.get("/search", SiteController.search);
+router.get("/cart", SiteController.cart);
+router.get("/success", SiteController.success);
 
   //Route Product
   router.get('/admin/products',AuthMiddlewares.checkAdmin,ProductController.index);
