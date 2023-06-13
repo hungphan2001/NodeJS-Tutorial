@@ -16,6 +16,7 @@ const index = async (req, res) => {
     const totalRow = await ProductModels.find().countDocuments();
     const totalPage = Math.ceil(totalRow / limit);
 
+
     res.render('admin/products/product', {
         products,
         page,

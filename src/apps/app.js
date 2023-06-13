@@ -13,6 +13,9 @@ app.use(session({
 }));
 
 
+//Middleware
+app.use(require("../middlewares/share"));
+
 //Router
 app.use(require(config.get('app.router')));
 
