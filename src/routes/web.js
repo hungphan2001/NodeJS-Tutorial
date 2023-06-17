@@ -30,7 +30,7 @@ router.get("/test2",TestController.test2);
 
   // Router Site
 router.get("/", SiteController.home);
-router.get("/category", SiteController.category);
+router.get("/category/:slug/:id", SiteController.category);
 router.get("/product", SiteController.product);
 router.get("/search", SiteController.search);
 router.get("/cart", SiteController.cart);

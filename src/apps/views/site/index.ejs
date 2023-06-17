@@ -6,12 +6,8 @@
                 <div class="products">
                     <h3>Sản phẩm nổi bật</h3>
                     <div class="product-list card-deck">
-                        <% for(featured of featuredProduct){%>
-                        <div class="product-item card text-center">
-                            <a href="#"><img src="/public/images/<%=featured.thumbnail %>"></a>
-                            <h4><a href="#"><%=featured.name%></a></h4>
-                            <p>Giá Bán: <span><%=featured.price%>đ</span></p>
-                        </div>
+                        <% for(let product of featuredProduct){%>
+                        <%-include('./components/product-item',{product}) %>
                         <% }%>
                     </div>
                 </div>
@@ -22,12 +18,8 @@
                 <div class="products">
                     <h3>Sản phẩm mới</h3>
                     <div class="product-list card-deck">
-                        <% for(latest of latestProduct){%>
-                        <div class="product-item card text-center">
-                            <a href="#"><img src="/public/images/<%=latest.thumbnail %>"></a>
-                            <h4><a href="#"><%=latest.name%></a></h4>
-                            <p>Giá Bán: <span><%=latest.price%>đ</span></p>
-                        </div>
+                        <% for(let product of latestProduct){%>
+                            <%-include('./components/product-item',{product}) %>
                         <% }%>
                     </div>
                 </div>
