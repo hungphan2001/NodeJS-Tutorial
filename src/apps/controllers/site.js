@@ -1,4 +1,5 @@
 const ProductModel = require("../models/products");
+const CategoryModel = require("../models/category");
 const home = async (req, res) => {
     const featuredProduct = await ProductModel
         .find({featured: true, is_stock: true})
@@ -12,9 +13,16 @@ const home = async (req, res) => {
     res.render("site/index",{featuredProduct,latestProduct});
 }
 
-const category = (req, res)=>{
-    res.render("site/category");
+
+const category = async (req, res) => {
+    const id = req.params.id;
+    const products = await ProductModel.find({cat_id: id});
+    const category = await CategoryModel.findById(id);
+    const title = category.title;
+    const total = products.length;
+    res.render("site/category", {products, title, total});
 }
+
 const product = (req, res)=>{
     res.render("site/product");
 }
