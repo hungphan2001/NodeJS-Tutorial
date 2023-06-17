@@ -16,7 +16,9 @@ const home = async (req, res) => {
 
 const category = async (req, res) => {
     const id = req.params.id;
-    const products = await ProductModel.find({cat_id: id});
+    const products = await ProductModel
+    .find({cat_id: id})
+    .sort({_id:-1});
     const category = await CategoryModel.findById(id);
     const title = category.title;
     const total = products.length;
