@@ -10,15 +10,15 @@
                         	<img src="images/product-1.png">
                         </div>
                         <div id="product-details" class="col-lg-6 col-md-6 col-sm-12">
-                        	<h1>iPhone X - 64GB Silver</h1>
+                        	<h1><%=products.name %></h1>
                             <ul>
-                            	<li><span>Bảo hành:</span> 12 Tháng</li>
-                                <li><span>Đi kèm:</span> Hộp, sách, sạc, cáp, tai nghe</li>
-                                <li><span>Tình trạng:</span> Máy Mới 100%</li>
-                                <li><span>Khuyến Mại:</span> Dán Màn Hình 3 lớp</li>
+                            	<li><span>Bảo hành:</span> <%=products.warranty %></li>
+                                <li><span>Đi kèm:</span> <%=products.accessories %></li>
+                                <li><span>Tình trạng:</span> <%=products.status %></li>
+                                <li><span>Khuyến Mại:</span> <%=products.promotion %></li>
                                 <li id="price">Giá Bán (chưa bao gồm VAT)</li>
-                                <li id="price-number">22.990.000đ</li>
-                                <li id="status">Còn hàng</li>
+                                <li id="price-number"><%=products.price %>đ</li>
+                                <li class="<%=products.is_stock ===true? '':'text-danger' %>" id="status"><%=products.is_stock===true ? "Còn hàng" :"Hết hàng" %></li>
                             </ul>
                             <div id="add-cart"><a href="#">Mua ngay</a></div>
                         </div>

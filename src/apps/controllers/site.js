@@ -23,8 +23,10 @@ const category = async (req, res) => {
     res.render("site/category", {products, title, total});
 }
 
-const product = (req, res)=>{
-    res.render("site/product");
+const product =async (req, res)=>{
+    const id = req.params.id;
+    const products = await ProductModel.findById(id);
+    res.render("site/product",{products});
 }
 const search = (req, res)=>{
     res.render("site/search");
