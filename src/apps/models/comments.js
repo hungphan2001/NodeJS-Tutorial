@@ -17,8 +17,8 @@ const commentsSchema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    __v: {
-        type: Number,
+    body: {
+        type: String,
         default: null,
 
     }
