@@ -36,7 +36,7 @@
     "picomatch": "^2.3.1",
     "pstree.remy": "^1.1.8",
     "readdirp": "^3.6.0",
-    "semver": "^5.7.1",
+    "semver": "^7.5.2",
     "simple-update-notifier": "^1.1.0",
     "slug": "^8.2.2",
     "supports-color": "^5.5.0",
