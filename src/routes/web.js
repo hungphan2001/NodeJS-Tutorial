@@ -9,7 +9,7 @@ const AdminController = require('../apps/controllers/admin');
 const CategoryController = require('../apps/controllers/category');
 const ProductController = require('../apps/controllers/product');
 const UsersController = require('../apps/controllers/users');
-
+const CommentsController = require('../apps/controllers/comment');
 const SiteController = require('../apps/controllers/site');
 //Upload
 
@@ -46,51 +46,28 @@ router.get("/success", SiteController.success);
   router.post('/admin/products/update/:id',AuthMiddlewares.checkAdmin,UploadMiddleware.single("thumbnail"),ProductController.update);
   router.get('/admin/products/delete/:id',AuthMiddlewares.checkAdmin,ProductController.del);
 
+
+  //Rounter Comments
+
+  router.get('/admin/comments',AuthMiddlewares.checkAdmin,CommentsController.index);
+  router.get('/admin/comments/delete/:id',AuthMiddlewares.checkAdmin,CommentsController.del);
+
   //Router User
 
   router.get ('/admin/users',AuthMiddlewares.checkAdmin,UsersController.users);
   
   router.get('/admin/users/create',AuthMiddlewares.checkAdmin,UsersController.create);
-  
+  router.post('/admin/users/postUser',AuthMiddlewares.checkAdmin,UsersController.postUser);
   router.get('/admin/users/edit/:id',AuthMiddlewares.checkAdmin,UsersController.edit);
-  
+  router.post('/admin/users/update/:id',AuthMiddlewares.checkAdmin,UsersController.update);
   router.get('/admin/users/delete/:id',AuthMiddlewares.checkAdmin,UsersController.del);
 
   //Router Category
 
   router.get('/admin/category',AuthMiddlewares.checkAdmin,CategoryController.category);
-
-  router.get('/admin/category/create',AuthMiddlewares.checkAdmin,CategoryController.category);
-
-
-  router.get('/admin/category/edit/:id',AuthMiddlewares.checkAdmin,CategoryController.category);
-
-  router.get('/admin/category/delete/:id',(req,res)=>{
-    res.render('admin/categories/edit_category>')
-  })
-
-  //Rounter Products
-
-
-    // router.get('/admin/products',AuthMiddlewares.checkAdmin,ProductController.edit);
-
-    // router.get('/admin/products',AuthMiddlewares.checkAdmin,ProductController.del);
-
-
-  //  router.get('/admin/products',(req,res)=>{
-  //   res.render('admin/products/product');
-  // })
-
-  // router.get('/admin/products/create',(req,res)=>{
-  //   res.render('admin/products/add_product');
-  // })
-
-  // router.get('/admin/products/edit/:id',(req,res)=>{
-  //   res.render('admin/products/edit_product')
-  // })
-
-  // router.get('/admin/products/delete/:id',(req,res)=>{
-  //   res.render('admin/products/edit_product>')
-  // })
-
+  router.get('/admin/category/create',AuthMiddlewares.checkAdmin,CategoryController.create);
+  router.post('/admin/category/postCategory',AuthMiddlewares.checkAdmin,CategoryController.postCategory);
+  router.get('/admin/category/edit/:id',AuthMiddlewares.checkAdmin,CategoryController.edit);
+  router.post('/admin/category/update/:id',AuthMiddlewares.checkAdmin,CategoryController.update);
+  router.get('/admin/category/delete/:id',AuthMiddlewares.checkAdmin,CategoryController.del);
   module.exports = router;

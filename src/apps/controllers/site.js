@@ -46,8 +46,15 @@ const comment = async (req,res)=>{
     await new CommentsModels (comment).save();
     res.redirect(req.path);
 }
-const search = (req, res)=>{
-    res.render("site/search");
+const search =async (req, res)=>{
+    const keyword = req.query.keyword||"";
+    const filter ={};
+    if(keyword){
+        filter.$text={$search:keyword}
+    }
+
+    const products = await ProductModel.find(filter);
+    res.render("site/search",{keyword,products});
 }
 const cart = (req, res)=>{
     res.render("site/cart");

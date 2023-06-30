@@ -1,4 +1,4 @@
-<%-include('../layout/head',{title:'Admin Dashboard - Product'}) %>
+<%-include('../layout/head',{title:'Admin Dashboard - Comment'}) %>
 <%-include('../layout/header') %>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="container-fluid">
@@ -30,20 +30,15 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Danh sách sản phẩm</li>
+				<li class="active">Danh sách bình luận</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Danh sách sản phẩm</h1>
+				<h1 class="page-header">Danh sách bình luận</h1>
 			</div>
 		</div><!--/.row-->
-		<div id="toolbar" class="btn-group">
-            <a href="/admin/products/create" class="btn btn-success">
-                <i class="glyphicon glyphicon-plus"></i> Thêm sản phẩm
-            </a>
-        </div>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -55,27 +50,22 @@
 						    <thead>
 						    <tr>
 						        <th data-field="id" data-sortable="true">ID</th>
-						        <th data-field="name"  data-sortable="true">Tên sản phẩm</th>
-                                <th data-field="price" data-sortable="true">Giá</th>
-                                <th>Ảnh sản phẩm</th>
-                                <th>Trạng thái</th>
-                                <th>Danh mục</th>
+                                <th data-field="full_name"  data-sortable="true">Họ & Tên</th>
+						        <th data-field="email"  data-sortable="true">Email</th>
+                                <th>Bình luận</th>
                                 <th>Hành động</th>
 						    </tr>
                             </thead>
                             <tbody>
                                 <% let y=1 %>
-                                <% for(x in products){%>
+                                <% for(let x in comments){%>
                                     <tr>
                                         <td style=""><%=y++ %></td>
-                                        <td style=""><%=products[x].name %></td>
-                                        <td style=""><%=products[x].price %> vnd</td>
-                                        <td style="text-align: center"><img width="130" height="180" src='/public/images/<%=products[x].thumbnail%>' /></td>
-                                        <td><span class="label label-<%= products[x].is_stock ? 'success' : 'danger' %>"><%= products[x].is_stock ? 'Còn hàng' : 'Hết hàng' %></span></td>
-                                        <td><%=products[x].cat_id.title %></td>
+                                        <td style=""><%=comments[x].full_name %></td>
+                                        <td style=""><%=comments[x].email %></td>
+                                        <td style=""><%=comments[x].body %> </td>
                                         <td class="form-group">
-                                            <a href="/admin/products/edit/<%=products[x]._id%>" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                                            <a href="/admin/products/delete/<%=products[x]._id%>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                            <a href="/admin/comments/delete/<%=comments[x]._id%>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                                         </td>
                                     </tr>
                                     <% }%>
@@ -83,23 +73,6 @@
 						</table>
                     </div>
                     <div class="panel-footer">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <% if(page>1) {%>
-                                <li class="page-item"><a class="page-link" href="/admin/products?page=<%=page-1%>">&laquo;</a></li>
-                                <%}%>
-                                <%for(pageNum of pages){%>
-                                <% if(pageNum==="..."){ %>
-                                    <li class="page-item <%=pageNum==page? 'active' :''%>"><span><%=pageNum%></span></li>
-                                <% } else{ %>
-                                    <li class="page-item <%=pageNum==page? 'active' :''%>"><a class="page-link" href="/admin/products?page=<%=pageNum%>"><%=pageNum%></a></li>
-                                    <% } %>
-                                <%}%>
-                                <% if(page<totalPage) {%>
-                                <li class="page-item"><a class="page-link" href="/admin/products?page<%=page+1%>">&raquo;</a></li>
-                                <%}%>
-                            </ul>
-                        </nav>
                     </div>
 				</div>
 			</div>

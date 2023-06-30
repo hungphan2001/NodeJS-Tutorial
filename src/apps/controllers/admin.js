@@ -1,5 +1,6 @@
 const UserModel = require('../models/users')
 const ProductsModel = require('../models/products')
+const CommentsModel = require('../models/comments')
 
 const index = async (req, res) => {
     if (!req.session.email || !req.session.password) {
@@ -7,7 +8,8 @@ const index = async (req, res) => {
     } 
     const users = (await UserModel.find()).length;
     const products = (await ProductsModel.find()).length;
-    res.render('admin/dashboard', { users, products });
+    const comments = (await CommentsModel.find()).length;
+    res.render('admin/dashboard', { users, products,comments});
 }
 const products = (req, res) => {
     res.send('products');
